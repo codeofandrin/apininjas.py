@@ -1,0 +1,39 @@
+"""
+finjas.py
+===========
+API-Ninjas Finance APIs Wrapper
+
+Copyright (c) 2024-present Puncher1
+MIT License. See LICENSE for details
+"""
+
+__version__ = "0.2.2"
+__author__ = "Puncher1"
+__copyright__ = "Copyright (c) 2024-present Puncher1"
+__license__ = "MIT"
+
+from typing import NamedTuple, Literal
+
+from .client import *
+from .stock import *
+from .commodity import *
+from .crypto import *
+from .errors import *
+from .enums import *
+from . import (
+    utils as utils,
+    abc as abc,
+)
+
+
+class VersionInfo(NamedTuple):
+    major: int
+    minor: int
+    patch: int
+    releaselevel: Literal["alpha", "beta", "candidate", "final"]
+    serial: int
+
+
+version_info = VersionInfo(major=0, minor=2, patch=1, releaselevel="final", serial=0)
+
+del VersionInfo, NamedTuple, Literal

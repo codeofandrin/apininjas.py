@@ -1,0 +1,351 @@
+
+/* Variables */
+:root {
+  --white: #ffffff;
+  --grey-1: #e3ecf9;
+  --grey-1-8: rgba(227, 236, 249, 0.8);
+  --grey-2: #dae4f0;
+  --grey-3: #c5cdd9;
+  --grey-4: #a3a9b3;
+  --grey-5: #747980;
+  --grey-6: #484b4f;
+  --grey-7: #383b3e;
+  --grey-8: #28292c;
+  --black: #141516;
+
+  --blue-1: #5991ff;
+  --blue-2: #3377ff;
+  --blue-3: #2b65d9;
+  --blue-4: #214da6;
+  --blue-5: #173674;
+  --blue-6: #d1e40;
+
+  --brand-content: var(--blue-2);
+  --foreground-primary: var(--grey-8);
+  --api-background: #efeff4;
+  --codeblock-background: var(--grey-2);
+  --codeblock-border: var(--grey-4);
+  --codeblock-text: var(--grey-6);
+  --attribute-table-title: var(--grey-6);
+  --attribute-table-entry-border: var(--grey-3);
+  --attribute-table-entry-text: var(--grey-5);
+  --attribute-table-entry-hover-border: var(--blue-2);
+  --attribute-table-entry-hover-background: var(--grey-2);
+  --attribute-table-entry-hover-text: var(--blue-2);
+  --attribute-table-badge: var(--grey-7);
+  --xref-code-background: transparent;
+  --font-size--normal--2: 95%;
+  --highlight-on-target-background: #ffc;
+  --reference-link--hover: var(--blue-3);
+  --header-link-text--hover: white;
+  --header-link-background--hover: var(--blue-3);
+}
+
+:root[data-theme="dark"] {
+  --brand-content: var(--blue-1);
+  --foreground-primary: var(--grey-2);
+  --api-background: #1e2124ff;
+  --codeblock-background: var(--grey-6);
+  --codeblock-border: var(--grey-7);
+  --codeblock-text: var(--grey-1);
+  --attribute-table-title: var(--grey-3);
+  --attribute-table-entry-border: var(--grey-5);
+  --attribute-table-entry-text: var(--grey-3);
+  --attribute-table-entry-hover-border: var(--blue-1);
+  --attribute-table-entry-hover-background: var(--grey-8);
+  --attribute-table-entry-hover-text: var(--blue-1);
+  --attribute-table-badge: var(--grey-4);
+  --xref-code-background: transparent;
+  --font-size--normal--2: 95%;
+  --highlight-on-target-background: #28280d;
+  --reference-link--hover: var(--blue-2);
+  --header-link-text--hover: white;
+  --header-link-background--hover: var(--blue-2);
+}
+
+h1, h2, h3 {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+h2 {
+  font-size: 1.8em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  border-radius: 0;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: normal;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  border-radius: 0;
+}
+
+.py.class {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.sig.sig-object.py {
+  font-size: 95%;
+  padding-left: 48px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+/* make keyword italic (e.g. class ...) */
+em.property:first-child {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.sig.sig-object.py .sig-name {
+  padding-left: 3px;
+  padding-right: 2px;
+  font-size: 110%;
+}
+
+.sig-paren {
+  font-weight: normal;
+  font-size: 120%;
+}
+
+.sig-paren-open {
+  padding-right: 1px;
+}
+
+.sig-paren-close {
+  padding-left: 1px;
+}
+
+.sig-param {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.container.operations {
+  padding: 10px;
+  border: 1px solid var(--codeblock-border);
+  margin-bottom: 20px;
+}
+
+.container.operations::before {
+  content: 'Supported Operations';
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+pre {
+  background-color: var(--codeblock-background);
+  border: 1px solid var(--codeblock-border);
+  color: var(--codeblock-text);
+  font-size: 0.75em;
+  line-height: 1.5em;
+  margin: 1.5em 0 1.5em 0;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.py-attribute-table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 2em;
+  padding-top: 20px;
+}
+
+.py-attribute-table-column {
+  flex: 1 1 auto;
+}
+
+.py-attribute-table-column:not(:first-child) {
+  margin-top: 1em;
+}
+
+.py-attribute-table-column > span {
+  font-weight: bold;
+  color: var(--attribute-table-title);
+}
+
+main .py-attribute-table-column > ul {
+  list-style: none;
+  margin: 4px 0;
+  padding-left: 0;
+  font-size: 0.95em;
+}
+
+.py-attribute-table-entry {
+  margin: 0;
+  padding: 2px 0 2px 0.2em;
+  border-left: 2px solid var(--attribute-table-entry-border);
+  display: flex;
+  line-height: 1.2em;
+}
+
+.py-attribute-table-entry > a {
+  padding-left: 0.5em;
+  color: var(--attribute-table-entry-text);
+  flex-grow: 1;
+}
+
+.py-attribute-table-entry > a:hover {
+  color: var(--attribute-table-entry-hover-text);
+  text-decoration: none;
+}
+
+.py-attribute-table-entry:hover {
+  background-color: var(--attribute-table-entry-hover-background);
+  border-left: 2px solid var(--attribute-table-entry-hover-border);
+  text-decoration: none;
+}
+
+.py-attribute-table-badge {
+  flex-basis: 3em;
+  text-align: right;
+  font-size: 0.9em;
+  color: var(--attribute-table-badge);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+p code.literal:not(code.xref){
+  padding: 2px 3px;
+  font-size: 14.5px;
+}
+
+/* remove "codeblock-look" from references */
+code.xref, a code {
+  font-size: 14.5px;
+  background-color: var(--xref-code-background);
+  border-color: transparent !important;
+  padding: .1em .2em;
+}
+
+/* Title for Parameters, Raises, etc. */
+dl.field-list > dt {
+  font-weight: bold;
+}
+
+.reference.internal strong {
+  font-weight: normal;
+}
+
+dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dd {
+    margin-top: 8px;
+}
+
+dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dd>:first-child {
+    margin-top: 0;
+}
+
+dl.field-list {
+  margin-top: 20px;
+}
+
+p {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+:not(.py-attribute-table-entry) > a.reference:hover {
+  color: var(--reference-link--hover);
+  text-decoration: underline;
+}
+
+dl dt>.headerlink {
+  padding: 1px 5px;
+  margin-left: 1px;
+  font-size: 14px;
+}
+
+h1>.headerlink {
+  padding: 0.5px 6px;
+  margin-left: 3px;
+  font-size: 20px;
+}
+
+h2>.headerlink, h3>.headerlink {
+  padding: 1px 5px;
+  margin-left: 3px;
+  font-size: 16px;
+}
+
+a.headerlink:hover {
+  color: var(--header-link-text--hover);
+  background: var(--header-link-background--hover);
+}
+
+.admonition {
+  padding-bottom: 10px;
+}
+
+.admonition p {
+  margin-left: 0.3rem;
+}
+
+.admonition, .admonition p.admonition-title {
+  font-size: 16px;
+}
+
+.admonition p.admonition-title {
+  padding-left: 2.5rem;
+  font-weight: bold;
+}
+
+.admonition p.admonition-title:before {
+  margin-left: 0.3rem;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.admonition p:nth-child(2) {
+  margin-top: 10px;
+}
+
+.toc-tree-container {
+  padding-top: 10px;
+}
+
+.toc-tree li.scroll-current>.reference {
+  font-weight: normal;
+}
+
+.toc-tree .toc-tree-list {
+  list-style: square;
+  margin-left: 0.8rem;
+}
+
+.toc-title a {
+  color: var(--color-toc-item-text);
+  text-decoration: none;
+}
+
+.toc-title a:hover {
+  color: var(--reference-link--hover);
+  text-decoration: underline;
+}
+
+.exception-hierarchy-content dd,
+.exception-hierarchy-content dl {
+  margin: 0 2px;
+}
+
+.exception-hierarchy-content {
+  margin-left: 0.5em;
+}
+
+.exception-hierarchy-content ul {
+  list-style: "»" !important;
+}

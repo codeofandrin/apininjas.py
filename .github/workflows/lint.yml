@@ -1,0 +1,38 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.9", "3.x" ]
+
+    name: check ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        id: install-deps
+        run: |
+          pip install black==24.8.0
+          pip install -U -r requirements.txt
+
+      - name: Run Pyright
+      - uses: jakebailey/pyright-action@v2
+        with:
+          version: 1.1.379
+
+      - name: Run black
+        if: ${{ always() && steps.install-deps.outcome == "success" }}
+        run: |
+          black --check finjas
