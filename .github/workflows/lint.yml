@@ -31,6 +31,7 @@ jobs:
         uses: jakebailey/pyright-action@v2
         with:
           version: 1.1.379
+          warnings: true
 
       - name: Run black
         if: ${{ always() && steps.install-deps.outcome == 'success' }}
