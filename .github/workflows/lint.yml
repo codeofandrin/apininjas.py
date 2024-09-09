@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.9", "3.x" ]
+        python-version: [ '3.9', '3.x' ]
 
     name: check ${{ matrix.python-version }}
     steps:
@@ -33,6 +33,6 @@ jobs:
           version: 1.1.379
 
       - name: Run black
-        if: ${{ always() && steps.install-deps.outcome == "success" }}
+        if: ${{ always() && steps.install-deps.outcome == 'success' }}
         run: |
           black --check finjas
