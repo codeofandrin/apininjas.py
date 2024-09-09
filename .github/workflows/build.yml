@@ -1,4 +1,4 @@
-name: dists & docs
+name: build
 
 on:
   push:
