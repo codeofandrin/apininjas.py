@@ -1,0 +1,39 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ '3.9', '3.x' ]
+
+    name: dists & docs  ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        id: install-deps
+        run: |
+          pip install -U -r requirements.txt
+          pip install .[docs]
+
+      - name: Build Dists
+        id: build-dists
+        run: |
+          python -m build
+          
+      - name: Build Docs
+        id: build-docs
+        run: | 
+          cd docs
+          sphinx-build -b html -D language=en -j auto -a -E -n -T -W --keep-going . _build/html
