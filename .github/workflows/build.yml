@@ -1,4 +1,4 @@
-name: lint
+name: build
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       matrix:
         python-version: [ '3.9', '3.x' ]
 
-    name: check ${{ matrix.python-version }}
+    name: dists & docs  ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -24,16 +24,17 @@ jobs:
       - name: Install dependencies
         id: install-deps
         run: |
-          pip install black==24.8.0 typing_extensions
+          pip install build
           pip install -U -r requirements.txt
+          pip install .[docs]
 
-      - name: Run Pyright
-        uses: jakebailey/pyright-action@v2
-        with:
-          version: 1.1.379
-          warnings: true
-
-      - name: Run black
-        if: ${{ always() && steps.install-deps.outcome == 'success' }}
+      - name: Build Dists
+        id: build-dists
         run: |
-          black --check finjas
+          python -m build
+          
+      - name: Build Docs
+        id: build-docs
+        run: | 
+          cd docs
+          sphinx-build -b html -D language=en -j auto -a -E -n -T -W --keep-going . _build/html
