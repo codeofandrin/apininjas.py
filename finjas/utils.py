@@ -31,7 +31,7 @@ from typing import Callable, Any, TypeVar
 
 # fmt: off
 __all__ = (
-    "from_timestamp"
+    "from_timestamp",
 )
 # fmt: on
 
