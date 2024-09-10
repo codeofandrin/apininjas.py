@@ -5,9 +5,9 @@ An easy-to-use and async ready Python wrapper for the API-Ninjas APIs.
 
 ## Key Features
 
-* Pythonic API using models
-* Modern syntax using `async` and `await`
-* Type-hinted objects
+* Pythonic and modern API
+* Asynchronous using `async` and `await`
+* Fully type-hinted
 
 
 ## Installing
