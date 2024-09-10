@@ -15,7 +15,7 @@ sys.path.append(os.path.abspath("extensions"))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "finjas.py"
+project = "apininjas.py"
 copyright = "2024-present, Puncher1"
 author = "Puncher1"
 

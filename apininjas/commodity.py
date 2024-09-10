@@ -26,7 +26,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Union
 
-import finjas.abc
+import apininjas.abc
 from . import utils
 from .enums import CommodityType
 
@@ -45,7 +45,7 @@ __all__ = (
 # fmt: on
 
 
-class Commodity(finjas.abc.FinancialInstrument):
+class Commodity(apininjas.abc.FinancialInstrument):
     """Represents a commodity future from the Commodity Price API or the Gold Price API.
 
     .. container:: operations
@@ -121,7 +121,7 @@ class Commodity(finjas.abc.FinancialInstrument):
         self.price = data["price"]
         self._updated = data["updated"]
 
-    @utils.copy_doc(finjas.abc.FinancialInstrument.update)
+    @utils.copy_doc(apininjas.abc.FinancialInstrument.update)
     async def update(self) -> float:
         data = await self._http.get_commodity(name=self.type.value)
         self._update(data=data)

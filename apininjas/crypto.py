@@ -26,7 +26,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import finjas.abc
+import apininjas.abc
 from . import utils
 
 if TYPE_CHECKING:
@@ -41,7 +41,7 @@ __all__ = (
 # fmt: on
 
 
-class Crypto(finjas.abc.FinancialInstrument):
+class Crypto(apininjas.abc.FinancialInstrument):
     """Represents a cryptocurrency from the Crypto Price API.
 
     .. container:: operations
@@ -98,7 +98,7 @@ class Crypto(finjas.abc.FinancialInstrument):
         self.price: float = float(data["price"])
         self._updated = data["timestamp"]
 
-    @utils.copy_doc(finjas.abc.FinancialInstrument.update)
+    @utils.copy_doc(apininjas.abc.FinancialInstrument.update)
     async def update(self) -> float:
         data = await self._http.get_crypto(symbol=self.symbol)
         self._update(data=data)

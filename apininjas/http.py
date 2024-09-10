@@ -34,7 +34,7 @@ from .errors import (
     HTTPException,
     NotFound,
     MethodNotAllowed,
-    APIServerError,
+    APINinjasServerError,
 )
 from .types import instrument
 
@@ -65,7 +65,7 @@ class HTTPClient:
         sys_vers = f"Python/{sys.version_info[0]}.{sys.version_info[1]}"
         client_vers = f"aiohttp/{aiohttp.__version__}"
         self.user_agent: str = (
-            f"finjas.py (https://github.com/Puncher1/finjas.py {__version__}) {sys_vers} {client_vers}"
+            f"apininjas.py (https://github.com/Puncher1/apininjas.py {__version__}) {sys_vers} {client_vers}"
         )
 
     async def request(
@@ -94,7 +94,7 @@ class HTTPClient:
                 elif http_status == 405:
                     raise MethodNotAllowed(response, data)
                 elif http_status >= 500:
-                    raise APIServerError(response, data)
+                    raise APINinjasServerError(response, data)
                 else:
                     raise HTTPException(response, data)
 

@@ -1,11 +1,11 @@
-.. currentmodule:: finjas
+.. currentmodule:: apininjas
 
 :tocdepth: 3
 
 API Reference
 ==============
 
-This section provides a detailed overview of the API of finjas.py.
+This section provides a detailed overview of the API of apininjas.py.
 
 
 Clients
@@ -23,7 +23,7 @@ Client
 Utility Functions
 ------------------
 
-.. autofunction:: finjas.utils.from_timestamp
+.. autofunction:: apininjas.utils.from_timestamp
 
 
 Enumerations
@@ -164,9 +164,9 @@ Abstract Base Classes
 FinancialInstrument
 ~~~~~~~~~~~~~~~~~~~~
 
-.. attributetable:: finjas.abc.FinancialInstrument
+.. attributetable:: apininjas.abc.FinancialInstrument
 
-.. autoclass:: finjas.abc.FinancialInstrument
+.. autoclass:: apininjas.abc.FinancialInstrument
     :members:
 
 
@@ -204,7 +204,7 @@ Crypto
 Exceptions
 -----------
 
-.. autoexception:: FinjasBaseException
+.. autoexception:: APINinjasBaseException
 
 .. autoexception:: ClientException
 
@@ -215,7 +215,7 @@ Exceptions
 
 .. autoexception:: MethodNotAllowed
 
-.. autoexception:: APIServerError
+.. autoexception:: APINinjasServerError
 
 .. autoexception:: StockNotFound
 
@@ -224,10 +224,10 @@ Exception Hierarchy
 
 .. exception_hierarchy::
 
-    - :exc:`FinjasBaseException`
+    - :exc:`APINinjasBaseException`
         - :exc:`ClientException`
             - :exc:`StockNotFound`
         - :exc:`HTTPException`
             - :exc:`NotFound`
             - :exc:`MethodNotAllowed`
-            - :exc:`APIServerError`
+            - :exc:`APINinjasServerError`

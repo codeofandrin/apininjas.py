@@ -32,18 +32,18 @@ if TYPE_CHECKING:
 
 # fmt: off
 __all__ = (
-    "FinjasBaseException",
+    "APINinjasBaseException",
     "ClientException",
     "HTTPException",
     "NotFound",
     "MethodNotAllowed",
-    "APIServerError",
+    "APINinjasServerError",
     "StockNotFound",
 )
 # fmt: on
 
 
-class FinjasBaseException(Exception):
+class APINinjasBaseException(Exception):
     """Base exception class.
 
     Every exception in this library is derived from this class.
@@ -52,7 +52,7 @@ class FinjasBaseException(Exception):
     pass
 
 
-class ClientException(FinjasBaseException):
+class ClientException(APINinjasBaseException):
     """Exception that's raised when an operation in the :class:`Client` fails.
 
     This exception is often raised due to invalid user input.
@@ -61,7 +61,7 @@ class ClientException(FinjasBaseException):
     pass
 
 
-class HTTPException(FinjasBaseException):
+class HTTPException(APINinjasBaseException):
     """HTTP Exception that's raised when an HTTP request fails.
 
     Attributes
@@ -111,7 +111,7 @@ class MethodNotAllowed(HTTPException):
     pass
 
 
-class APIServerError(HTTPException):
+class APINinjasServerError(HTTPException):
     """HTTP Exception with status code above 500.
 
     Derives from :exc:`HTTPException`.

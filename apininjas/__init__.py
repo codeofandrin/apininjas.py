@@ -1,7 +1,7 @@
 """
-finjas.py
+apininjas.py
 ===========
-API-Ninjas Finance APIs Wrapper
+Python Wrapper for the API-Ninjas APIs.
 
 Copyright (c) 2024-present Puncher1
 MIT License. See LICENSE for details

@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "finjas.py"
+name = "apininjas.py"
 authors = [{ name="Puncher1" }]
 description = "A Python wrapper for the API-Ninjas Finance APIs."
 readme = "README.md"
@@ -30,13 +30,13 @@ classifiers = [
 dynamic = ["version", "dependencies"]
 
 [project.urls]
-Documentation = "https://finjaspy.readthedocs.io/en/latest"
-Repository = "https://github.com/puncher1/finjas.py"
-Issues = "https://github.com/puncher1/finjas.py/issues"
+Documentation = "https://apininjaspy.readthedocs.io/en/latest"
+Repository = "https://github.com/puncher1/apininjas.py"
+Issues = "https://github.com/puncher1/apininjas.py/issues"
 
 [tool.setuptools.dynamic]
 dependencies = { file = "requirements.txt" }
-version = { attr = "finjas.__version__" }
+version = { attr = "apininjas.__version__" }
 
 [project.optional-dependencies]
 docs = [
@@ -46,8 +46,8 @@ docs = [
 
 [tool.setuptools]
 packages = [
-    "finjas",
-    "finjas.types",
+    "apininjas",
+    "apininjas.types",
 ]
 include-package-data = true
 
@@ -57,7 +57,7 @@ skip-string-normalization = true
 
 [tool.pyright]
 include = [
-    "finjas",
+    "apininjas",
 ]
 exclude = [
     "**/__pycache__",
