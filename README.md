@@ -1,6 +1,6 @@
 # apininjas.py
 
-An easy-to-use and async ready Python wrapper for the API-Ninjas APIs.
+An easy-to-use and async-ready Python wrapper for the API-Ninjas APIs.
 
 
 ## Key Features
