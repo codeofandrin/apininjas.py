@@ -15,9 +15,7 @@ __license__ = "MIT"
 from typing import NamedTuple, Literal
 
 from .client import *
-from .stock import *
-from .commodity import *
-from .crypto import *
+from .finance import *
 from .errors import *
 from .enums import *
 from . import (

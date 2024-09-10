@@ -27,9 +27,7 @@ from __future__ import annotations
 from typing import Callable, Coroutine, Any, TypeVar, TYPE_CHECKING
 
 from .http import HTTPClient
-from .stock import Stock
-from .commodity import Commodity
-from .crypto import Crypto
+from .finance import Stock, Commodity, Crypto
 from .enums import CommodityType
 from .errors import StockNotFound
 

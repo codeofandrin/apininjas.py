@@ -36,7 +36,7 @@ from .errors import (
     MethodNotAllowed,
     APINinjasServerError,
 )
-from .types import instrument
+from .types import finance
 
 if TYPE_CHECKING:
     T = TypeVar('T')
@@ -102,19 +102,19 @@ class HTTPClient:
         if self.__session:
             await self.__session.close()
 
-    # Instruments
+    # Finance
 
-    def get_stock(self, *, ticker: str) -> Response[instrument.Stock]:
+    def get_stock(self, *, ticker: str) -> Response[finance.Stock]:
         params = {"ticker": ticker}
         return self.request(Route("GET", "/stockprice"), params=params)
 
-    def get_commodity(self, *, name: str) -> Response[instrument.Commodity]:
+    def get_commodity(self, *, name: str) -> Response[finance.Commodity]:
         params = {"name": name}
         return self.request(Route("GET", "/commodityprice"), params=params)
 
-    def get_gold(self) -> Response[instrument.Gold]:
+    def get_gold(self) -> Response[finance.Gold]:
         return self.request(Route("GET", "/goldprice"))
 
-    def get_crypto(self, *, symbol: str) -> Response[instrument.Crypto]:
+    def get_crypto(self, *, symbol: str) -> Response[finance.Crypto]:
         params = {"symbol": symbol}
         return self.request(Route("GET", "/cryptoprice"), params=params)
