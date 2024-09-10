@@ -143,17 +143,6 @@ em.property:first-child {
   padding-bottom: 0.5em;
 }
 
-pre {
-  background-color: var(--codeblock-background);
-  border: 1px solid var(--codeblock-border);
-  color: var(--codeblock-text);
-  font-size: 0.75em;
-  line-height: 1.5em;
-  margin: 1.5em 0 1.5em 0;
-  padding: 10px;
-  overflow-x: auto;
-}
-
 .py-attribute-table {
   display: flex;
   flex-wrap: wrap;
@@ -348,4 +337,8 @@ a.headerlink:hover {
 
 .exception-hierarchy-content ul {
   list-style: "»" !important;
+}
+
+ol.arabic {
+  padding-left: 2rem;
 }

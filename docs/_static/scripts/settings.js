@@ -129,9 +129,14 @@ for (let elem of themeToggles) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    insertAttributetables()
-    editSigParenStyle()
-    replaceAsyncWithAwait()
-    adjustToc()
+    let path = window.location.pathname
+    let page = path.split("/").pop()
+    if (page === "api.html") {
+        insertAttributetables()
+        editSigParenStyle()
+        replaceAsyncWithAwait()
+        adjustToc()
+    }
+
     setupRootTheme()
 })
