@@ -30,7 +30,7 @@ classifiers = [
 dynamic = ["version", "dependencies"]
 
 [project.urls]
-Documentation = "https://apininjaspy.readthedocs.io/en/latest"
+Documentation = "https://apininjaspy.readthedocs.io/latest"
 Repository = "https://github.com/puncher1/apininjas.py"
 Issues = "https://github.com/puncher1/apininjas.py/issues"
 
