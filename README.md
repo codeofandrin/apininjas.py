@@ -59,8 +59,8 @@ if __name__ == "__main__":
 
 
 ## Links
-[Documentation][1] <br>
-[API-Ninjas][2]
+* [Documentation][1] <br>
+* [API-Ninjas][2]
 
 
 [1]: https://apininjaspy.rtfd.org/latest
