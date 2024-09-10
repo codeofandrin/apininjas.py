@@ -8,6 +8,7 @@ An easy-to-use and async-ready Python wrapper for the API-Ninjas APIs.
 * Pythonic and modern API
 * Asynchronous using `async` and `await`
 * Fully type-hinted
+* Easy to use with an object oriented design
 
 
 ## Installing

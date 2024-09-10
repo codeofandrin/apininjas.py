@@ -6,6 +6,16 @@
 apininjas.py documentation
 ===========================
 
+apininjas.py is an easy-to-use and async-ready Python wrapper for the API-Ninjas APIs.
+
+Features
+-------------
+- Pythonic and modern API
+- Asynchronous using ``async`` and ``await``
+- Fully type-hinted
+- Easy to use with an object oriented design
+
+
 
 Manuals
 --------
