@@ -17,6 +17,6 @@ To install the latest stable version, use ::
 
     pip install -U apininjas.py
 
-To install the development version (unstable), use ::
+To install the development version (may be unstable), use ::
 
     pip install -U git+https://github.com/puncher1/apininjas.py
