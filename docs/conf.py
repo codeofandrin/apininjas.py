@@ -81,3 +81,7 @@ html_theme_options = {
 html_static_path = ["_static"]
 html_css_files = [f"styles/{file}" for file in os.listdir("_static/styles")]
 html_js_files = [f"scripts/{file}" for file in os.listdir("_static/scripts")]
+
+html_title = "apininjas.py"
+html_logo = "_static/assets/apininjaspy_logo.png"
+html_favicon = html_logo

@@ -342,3 +342,18 @@ a.headerlink:hover {
 ol.arabic {
   padding-left: 2rem;
 }
+
+.sidebar-logo {
+  margin-left: 0;
+  width: 50px;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar-brand-text {
+  margin-left: 10px;
+  line-height: 50px;
+}
