@@ -1,7 +1,12 @@
-# apininjas.py
 
-An easy-to-use and async-ready Python wrapper for the API-Ninjas APIs.
+<h1 align="center">apininjas.py</h1>
+<p align="center">An easy-to-use and async-ready Python wrapper for the API-Ninjas APIs.</p>
 
+<p align="center">
+    <a href="https://pypi.org/project/apininjas.py/"><img alt="PyPi version" src="https://img.shields.io/pypi/v/apininjas.py?style=flat-square&color=016dad"></a>
+    <img alt="Python version" src="https://img.shields.io/pypi/pyversions/apininjas.py?style=flat-square&color=016dad">
+    <a href="https://github.com/Puncher1/apininjas.py/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/puncher1/apininjas.py?style=flat-square"></a>
+</p>
 
 ## Key Features
 
