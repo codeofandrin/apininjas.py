@@ -43,8 +43,10 @@ if TYPE_CHECKING:
     Response = Coroutine[Any, Any, T]
 
 
+API_VERSION: int = 1
+
+
 class Route:
-    API_VERSION: int = 1
     BASE: ClassVar[str] = f"https://api.api-ninjas.com/v{API_VERSION}"
 
     def __init__(self, method: str, path: str, **kwargs: Any) -> None:
