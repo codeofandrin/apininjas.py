@@ -24,7 +24,7 @@ SOFTWARE.
 
 from __future__ import annotations
 
-from typing import Callable, Coroutine, Any, TypeVar, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from .http import HTTPClient
 from .finance import Stock, Commodity, Crypto
@@ -40,11 +40,6 @@ __all__ = (
     "Client",
 )
 # fmt: on
-
-
-T = TypeVar('T')
-Coro = Coroutine[Any, Any, T]
-CoroType = TypeVar('CoroType', bound=Callable[..., Coro[Any]])
 
 
 class Client:
