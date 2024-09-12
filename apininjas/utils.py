@@ -36,7 +36,7 @@ __all__ = (
 # fmt: on
 
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 def from_timestamp(timestamp: int, /) -> datetime.datetime:

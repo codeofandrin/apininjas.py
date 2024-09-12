@@ -39,7 +39,7 @@ from .errors import (
 from .types import finance
 
 if TYPE_CHECKING:
-    T = TypeVar('T')
+    T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
 
 
