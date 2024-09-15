@@ -22,31 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from typing import TypedDict
-from .number import ValueNumber
+from typing import Union
 
 
-class Gold(TypedDict):
-    price: ValueNumber
-    updated: int
-
-
-class Stock(TypedDict):
-    ticker: str
-    name: str
-    exchange: str
-    price: ValueNumber
-    updated: int
-
-
-class Commodity(TypedDict):
-    name: str
-    exchange: str
-    price: ValueNumber
-    updated: int
-
-
-class Crypto(TypedDict):
-    symbol: str
-    price: ValueNumber
-    timestamp: int
+ValueNumber = Union[int, float, str]
