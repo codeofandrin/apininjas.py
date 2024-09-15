@@ -23,11 +23,10 @@ SOFTWARE.
 """
 
 from typing import TypedDict
-from .number import ValueNumber
 
 
 class Gold(TypedDict):
-    price: ValueNumber
+    price: float
     updated: int
 
 
@@ -35,18 +34,18 @@ class Stock(TypedDict):
     ticker: str
     name: str
     exchange: str
-    price: ValueNumber
+    price: float
     updated: int
 
 
 class Commodity(TypedDict):
     name: str
     exchange: str
-    price: ValueNumber
+    price: float
     updated: int
 
 
 class Crypto(TypedDict):
     symbol: str
-    price: ValueNumber
+    price: str
     timestamp: int
