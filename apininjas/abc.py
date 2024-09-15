@@ -46,6 +46,7 @@ class FinancialInstrument:
 
     - :class:`.Stock`
     - :class:`.Commodity`
+    - :class:`.Crypto`
 
     Attributes
     -----------
