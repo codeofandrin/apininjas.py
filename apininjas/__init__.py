@@ -7,7 +7,7 @@ Copyright (c) 2024-present Puncher1
 MIT License. See LICENSE for details
 """
 
-__version__ = "0.2.0a"
+__version__ = "0.2.0"
 __author__ = "Puncher1"
 __copyright__ = "Copyright (c) 2024-present Puncher1"
 __license__ = "MIT"
@@ -32,6 +32,6 @@ class VersionInfo(NamedTuple):
     serial: int
 
 
-version_info = VersionInfo(major=0, minor=2, patch=0, releaselevel="alpha", serial=0)
+version_info = VersionInfo(major=0, minor=2, patch=0, releaselevel="final", serial=0)
 
 del VersionInfo, NamedTuple, Literal
