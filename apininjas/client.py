@@ -213,8 +213,8 @@ class Client:
 
         old_amount = data["old_amount"]
         new_amount = data["new_amount"]
-        rate_new_old = new_amount / old_amount
-        rate_old_new = old_amount / new_amount
+        rate_new_old = new_amount / old_amount if old_amount != 0 else 0
+        rate_old_new = old_amount / new_amount if new_amount != 0 else 0
 
         old_currency = Currency(
             http=self._http,
