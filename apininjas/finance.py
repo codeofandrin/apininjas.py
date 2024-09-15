@@ -24,7 +24,7 @@ SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, Optional, Union, NamedTuple
 
 import apininjas.abc
 from .enums import CommodityType
@@ -45,6 +45,7 @@ __all__ = (
     "Stock",
     "Crypto",
     "Commodity",
+    "Currency",
 )
 # fmt: on
 
@@ -278,3 +279,91 @@ class Crypto(apininjas.abc.FinancialInstrument):
         self._update(data=data)
 
         return self.price
+
+
+class Currency:
+    """Represents a currency from the Exchange Rate API or Currency Conversion API.
+
+    .. container:: operations
+
+        .. describe:: x == y
+
+            Checks if two currencies are equal.
+
+        .. describe:: x != y
+
+            Checks if two currencies are not equal.
+
+    Attributes
+    -----------
+    name: :class:`str`
+        The name of the currency.
+    exchange_rate: :class:`float`
+        The exchange rate relative to the :attr:`reference` currency.
+    reference: :class: `str`
+        The name of the reference currency.
+    """
+
+    __slots__ = ("_http", "name", "reference", "exchange_rate")
+
+    def __init__(self, *, http: HTTPClient, name: str, exchange_rate: float, reference: str):
+        self._http: HTTPClient = http
+        self.name: str = name
+        self.reference: str = reference
+        self._update(exchange_rate=exchange_rate)
+
+    def __repr__(self) -> str:
+        attrs = [
+            ("name", self.name),
+            ("reference", self.reference),
+        ]
+        joined = " ".join([f"{a}={v!r}" for a, v in attrs])
+        return f"<Currency {joined}>"
+
+    def __eq__(self, other: Currency) -> bool:
+        return self.name == other.name and self.reference == other.reference
+
+    def __ne__(self, other: Currency) -> bool:
+        return not self.__eq__(other)
+
+    def _update(self, *, exchange_rate: float) -> None:
+        self.exchange_rate: float = exchange_rate
+
+    def is_stronger(self) -> bool:
+        """:class:`bool`: Whether the currency is stronger (more valuable) than its :attr:`reference`."""
+        return self.exchange_rate < 1
+
+    async def update(self) -> float:
+        """|coro|
+
+        Updates :attr:`exchange_rate` of the current object and returns the new exchange rate.
+
+        .. note::
+
+            This makes an API call.
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the exchange rate failed.
+
+        Returns
+        --------
+        :class:`float`
+            The newly updated exchange rate.
+        """
+        pair = f"{self.reference}_{self.name}"
+        data = await self._http.get_exchange_rate(pair=pair)
+        self._update(exchange_rate=data["exchange_rate"])
+
+        return self.exchange_rate
+
+
+class CurrencyWithAmount(NamedTuple):
+    currency: Currency
+    amount: float
+
+
+class CurrencyConversion(NamedTuple):
+    old: CurrencyWithAmount
+    new: CurrencyWithAmount

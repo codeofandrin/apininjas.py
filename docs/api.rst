@@ -200,6 +200,30 @@ Crypto
     :inherited-members:
     :members:
 
+Currency
+~~~~~~~~~
+
+.. attributetable:: Currency
+
+.. autoclass:: Currency
+    :members:
+
+.. class:: CurrencyWithAmount
+
+    A namedtuple which represents a currency with an amount.
+
+    .. attribute:: currency
+
+        The currency.
+
+        :type: :class:`Currency`
+
+    .. attribute:: amount
+
+        The amount.
+
+        :type: :class:`float`
+
 
 Exceptions
 -----------

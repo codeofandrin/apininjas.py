@@ -120,3 +120,12 @@ class HTTPClient:
     def get_crypto(self, *, symbol: str) -> Response[finance.Crypto]:
         params = {"symbol": symbol}
         return self.request(Route("GET", "/cryptoprice"), params=params)
+
+    def get_currency_conversion(self, **fields: Any) -> Response[finance.CurrencyConversion]:
+        valid_keys = ("have", "want", "amount")
+        params = {k: v for k, v in fields.items() if k in valid_keys}
+        return self.request(Route("GET", "/convertcurrency"), params=params)
+
+    def get_exchange_rate(self, *, pair: str) -> Response[finance.ExchangeRate]:
+        params = {"pair": pair}
+        return self.request(Route("GET", "/exchangerate"), params=params)

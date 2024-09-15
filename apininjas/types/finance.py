@@ -49,3 +49,15 @@ class Crypto(TypedDict):
     symbol: str
     price: str
     timestamp: int
+
+
+class CurrencyConversion(TypedDict):
+    old_amount: float
+    old_currency: str
+    new_amount: float
+    new_currency: str
+
+
+class ExchangeRate(TypedDict):
+    currency_pair: str
+    exchange_rate: float

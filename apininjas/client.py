@@ -27,7 +27,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .http import HTTPClient
-from .finance import Stock, Commodity, Crypto
+from .finance import Stock, Commodity, Crypto, CurrencyWithAmount, CurrencyConversion, Currency
 from .enums import CommodityType
 from .errors import StockNotFound
 
@@ -159,3 +159,94 @@ class Client:
         """
         data = await self._http.get_crypto(symbol=symbol)
         return Crypto(http=self._http, data=data)
+
+    async def fetch_currency_conversion(
+        self,
+        *,
+        have: str,
+        have_amount: float,
+        want: str,
+    ) -> CurrencyConversion:
+        """|coro|
+
+        Retrieves a converted :class:`CurrencyWithAmount` from the specified ``have`` currency
+        and ``have_amount`` and returns the old and new one.
+
+        Parameters
+        ----------
+        have: :class:`str`
+            The currency name to convert from (e.g. ``AUD``).
+        have_amount: :class:`float`
+            The amount of the ``have`` currency to convert from.
+        want: :class:`str`
+            The currency name to convert to (e.g. ``GBP``).
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the currency failed.
+
+        Returns
+        -------
+        Tuple[:class:`CurrencyWithAmount`, :class:`CurrencyWithAmount`]
+            The old and newly retrieved currency with their respective amounts.
+        """
+        data = await self._http.get_currency_conversion(want=want, have=have, amount=have_amount)
+
+        old_amount = data["old_amount"]
+        new_amount = data["new_amount"]
+        rate_new_old = new_amount / old_amount
+        rate_old_new = old_amount / new_amount
+
+        old_currency = Currency(
+            http=self._http,
+            name=data["old_currency"],
+            exchange_rate=rate_old_new,
+            reference=data["new_currency"],
+        )
+
+        new_currency = Currency(
+            http=self._http,
+            name=data["new_currency"],
+            exchange_rate=rate_new_old,
+            reference=data["old_currency"],
+        )
+
+        old_currency_with_amount = CurrencyWithAmount(currency=old_currency, amount=old_amount)
+        new_currency_with_amount = CurrencyWithAmount(currency=new_currency, amount=new_amount)
+
+        return CurrencyConversion(old=old_currency_with_amount, new=new_currency_with_amount)
+
+    async def fetch_currency(self, name: str, *, reference: str) -> Currency:
+        """|coro|
+
+        Retrieves a :class:`Currency` with the specified name and reference.
+
+        Parameters
+        ----------
+        name: :class:`str`
+            The currency name to retrieve from (e.g. ``GBP``).
+        reference: :class:`str`
+            The currency reference for the equivalent value (e.g. ``AUD``).
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the currency failed.
+
+        Returns
+        -------
+        :class:`Currency`
+            The retrieved currency.
+        """
+
+        pair = f"{reference}_{name}"
+        data = await self._http.get_exchange_rate(pair=pair)
+        currencies = data["currency_pair"].split("_")
+
+        return Currency(
+            http=self._http,
+            name=currencies[1],
+            exchange_rate=data["exchange_rate"],
+            reference=currencies[0],
+        )
