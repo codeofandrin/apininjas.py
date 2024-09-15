@@ -120,7 +120,7 @@ class Stock(apininjas.abc.FinancialInstrument):
         return not self.__eq__(other)
 
     def _update(self, *, data: StockPayload) -> None:
-        self.price: float = data["price"]
+        self.price: float = float(data["price"])
         self._updated = data["updated"]
 
     @utils.copy_doc(apininjas.abc.FinancialInstrument.update)
@@ -204,7 +204,7 @@ class Commodity(apininjas.abc.FinancialInstrument):
         return not self.__eq__(other)
 
     def _update(self, *, data: Union[GoldPayload, CommodityPayload]) -> None:
-        self.price = data["price"]
+        self.price: float = float(data["price"])
         self._updated = data["updated"]
 
     @utils.copy_doc(apininjas.abc.FinancialInstrument.update)
