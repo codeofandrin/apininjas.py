@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from typing import TypedDict
+from typing import TypedDict, List
 
 
 class Gold(TypedDict):
@@ -49,6 +49,10 @@ class Crypto(TypedDict):
     symbol: str
     price: str
     timestamp: int
+
+
+class CryptoSymbols(TypedDict):
+    symbols: List[str]
 
 
 class CurrencyConversion(TypedDict):

@@ -121,6 +121,9 @@ class HTTPClient:
         params = {"symbol": symbol}
         return self.request(Route("GET", "/cryptoprice"), params=params)
 
+    def get_crypto_symbols(self) -> Response[finance.CryptoSymbols]:
+        return self.request(Route("GET", "/cryptosymbols"))
+
     def get_currency_conversion(self, **fields: Any) -> Response[finance.CurrencyConversion]:
         valid_keys = ("have", "want", "amount")
         params = {k: v for k, v in fields.items() if k in valid_keys}

@@ -24,7 +24,7 @@ SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from .http import HTTPClient
 from .finance import Stock, Commodity, Crypto, CurrencyWithAmount, CurrencyConversion, Currency
@@ -159,6 +159,24 @@ class Client:
         """
         data = await self._http.get_crypto(symbol=symbol)
         return Crypto(http=self._http, data=data)
+
+    async def fetch_crypto_symbols(self) -> List[str]:
+        """|coro|
+
+        Retrieves a list of all available cryptocurrency symbols.
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the symbols failed.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The retrieved list of available symbols.
+        """
+        data = await self._http.get_crypto_symbols()
+        return data["symbols"]
 
     async def fetch_currency_conversion(
         self,
