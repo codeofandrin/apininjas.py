@@ -178,7 +178,7 @@ Stock
 
 .. attributetable:: Stock
 
-.. autoclass:: Stock
+.. autoclass:: Stock()
     :inherited-members:
     :members:
 
@@ -187,7 +187,7 @@ Commodity
 
 .. attributetable:: Commodity
 
-.. autoclass:: Commodity
+.. autoclass:: Commodity()
     :inherited-members:
     :members:
 
@@ -196,7 +196,7 @@ Crypto
 
 .. attributetable:: Crypto
 
-.. autoclass:: Crypto
+.. autoclass:: Crypto()
     :inherited-members:
     :members:
 
@@ -205,7 +205,7 @@ Currency
 
 .. attributetable:: Currency
 
-.. autoclass:: Currency
+.. autoclass:: Currency()
     :members:
 
 .. class:: CurrencyWithAmount
