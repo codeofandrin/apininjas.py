@@ -37,3 +37,13 @@ Everything about the apininjas.py API.
 
    api
 
+
+Project
+--------
+
+Project-specific information.
+
+.. toctree::
+   :maxdepth: 1
+
+   changelog

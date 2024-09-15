@@ -87,7 +87,7 @@ function removeParent(parent) {
     }
 }
 
-function adjustToc() {
+function adjustAPIReferenceToc() {
     let tocTree = document.getElementsByClassName("toc-tree")[0]
     let codeElements = tocTree.getElementsByTagName("code")
 
@@ -123,6 +123,26 @@ function adjustToc() {
 
 }
 
+function adjustChangelogToc() {
+    let tocTree = document.getElementsByClassName("toc-tree")[0]
+    let refElements = tocTree.getElementsByClassName("reference")
+
+    let parents = []
+    for (let refElem of refElements) {
+        if (["New Features", "Bug Fixes", "Misc"].includes(refElem.textContent)) {
+            parents.push(refElem.parentNode)
+        }
+    }
+
+    for (let parent of parents) {
+        for (let child of parent.childNodes) {
+            parent.removeChild(child)
+            // clean up empty parent elements (li, ul)
+            removeParent(parent)
+        }
+    }
+}
+
 themeToggles = document.getElementsByClassName("theme-toggle")
 for (let elem of themeToggles) {
     elem.addEventListener("click", cycleThemeOnce)
@@ -135,7 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
         insertAttributetables()
         editSigParenStyle()
         replaceAsyncWithAwait()
-        adjustToc()
+        adjustAPIReferenceToc()
+    }
+    else if (page === "changelog.html") {
+        adjustChangelogToc()
     }
 
     setupRootTheme()
