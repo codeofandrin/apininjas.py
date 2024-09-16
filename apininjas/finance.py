@@ -55,6 +55,10 @@ class Stock(apininjas.abc.FinancialInstrument):
 
     .. container:: operations
 
+        .. describe:: str(x)
+
+            Returns the stock's name.
+
         .. describe:: x == y
 
             Checks if two stocks are equal.
@@ -114,6 +118,9 @@ class Stock(apininjas.abc.FinancialInstrument):
         joined = " ".join([f"{a}={v!r}" for a, v in attrs])
         return f"<Stock {joined}>"
 
+    def __str__(self) -> str:
+        return self.name
+
     def __eq__(self, other: Stock) -> bool:
         return self.ticker == other.ticker
 
@@ -136,6 +143,10 @@ class Commodity(apininjas.abc.FinancialInstrument):
     """Represents a commodity future from the Commodity Price API or the Gold Price API.
 
     .. container:: operations
+
+        .. describe:: str(x)
+
+            Returns the name of the commodity future.
 
         .. describe:: x == y
 
@@ -199,6 +210,9 @@ class Commodity(apininjas.abc.FinancialInstrument):
         joined = " ".join([f"{a}={v!r}" for a, v in attrs])
         return f"<Commodity {joined}>"
 
+    def __str__(self) -> str:
+        return self.name
+
     def __eq__(self, other: Commodity) -> bool:
         return self.type == other.type
 
@@ -221,6 +235,10 @@ class Crypto(apininjas.abc.FinancialInstrument):
     """Represents a cryptocurrency from the Crypto Price API.
 
     .. container:: operations
+
+        .. describe:: str(x)
+
+            Returns the cryptocurrency's symbol.
 
         .. describe:: x == y
 
@@ -264,6 +282,9 @@ class Crypto(apininjas.abc.FinancialInstrument):
     def __repr__(self) -> str:
         return f"<Crypto symbol={self.symbol}>"
 
+    def __str__(self) -> str:
+        return self.symbol
+
     def __eq__(self, other: Crypto) -> bool:
         return self.symbol == other.symbol
 
@@ -286,6 +307,10 @@ class Currency:
     """Represents a currency from the Exchange Rate API or Currency Conversion API.
 
     .. container:: operations
+
+        .. describe:: str(x)
+
+            Returns the currency's name.
 
         .. describe:: x == y
 
@@ -320,6 +345,9 @@ class Currency:
         ]
         joined = " ".join([f"{a}={v!r}" for a, v in attrs])
         return f"<Currency {joined}>"
+
+    def __str__(self) -> str:
+        return self.name
 
     def __eq__(self, other: Currency) -> bool:
         return self.name == other.name and self.reference == other.reference
