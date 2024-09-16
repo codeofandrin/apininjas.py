@@ -194,6 +194,7 @@ class Commodity(apininjas.abc.FinancialInstrument):
         attrs = [
             ("name", self.name),
             ("exchange", self.exchange),
+            ("type", self.type),
         ]
         joined = " ".join([f"{a}={v!r}" for a, v in attrs])
         return f"<Commodity {joined}>"
