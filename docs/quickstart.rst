@@ -32,7 +32,7 @@ It's a really basic example, but let's have a look what happens here:
 
 1. First lines imports :py:mod:`asyncio` and the :class:`.Client` to interact with the API.
 2. Inside the ``main`` function we create our :class:`.Client` with our API key as a context manager.
-3. After that, we retrieve the :class:`.Stock` with ticker ``AAPL`` via the :attr:`~.Client.fetch_stock` method.
+3. After that, we retrieve the :class:`.Stock` with ticker ``AAPL`` via the :meth:`~.Client.fetch_stock` method.
 4. We then print out the :attr:`~.Stock.name` and :attr:`~.Stock.price` of the stock.
 5. Finally we execute our ``main`` coroutine with :py:func:`asyncio.run`.
 
