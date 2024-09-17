@@ -224,7 +224,7 @@ dl.field-list > dt {
   font-weight: bold;
 }
 
-.reference.internal strong {
+.reference.internal strong, dl.simple:not(.field-list) dt {
   font-weight: normal;
 }
 
