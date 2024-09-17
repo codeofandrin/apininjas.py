@@ -27,7 +27,15 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, List
 
 from .http import HTTPClient
-from .finance import Stock, Commodity, Crypto, CurrencyWithAmount, CurrencyConversion, Currency
+from .finance import (
+    Stock,
+    Commodity,
+    Crypto,
+    CurrencyWithAmount,
+    CurrencyConversion,
+    Currency,
+    IBANValidation,
+)
 from .enums import CommodityType
 from .errors import StockNotFound
 
@@ -268,3 +276,26 @@ class Client:
             exchange_rate=data["exchange_rate"],
             reference=currencies[0],
         )
+
+    async def fetch_iban_validation(self, iban: str) -> IBANValidation:
+        """|coro|
+
+        Retrieves an :class:`IBANValidation`.
+
+        Parameters
+        ----------
+        iban: :class:`str`
+            The IBAN to retrieve from.
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the IBAN validation failed.
+
+        Returns
+        -------
+        :class:`IBANValidation`
+            The retrieved IBAN validation.
+        """
+        data = await self._http.get_iban_validation(iban=iban)
+        return IBANValidation(data=data)

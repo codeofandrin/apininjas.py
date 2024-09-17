@@ -132,3 +132,7 @@ class HTTPClient:
     def get_exchange_rate(self, *, pair: str) -> Response[finance.ExchangeRate]:
         params = {"pair": pair}
         return self.request(Route("GET", "/exchangerate"), params=params)
+
+    def get_iban_validation(self, *, iban: str) -> Response[finance.IBANValidation]:
+        params = {"iban": iban}
+        return self.request(Route("GET", "/iban"), params=params)

@@ -37,6 +37,7 @@ if TYPE_CHECKING:
         Commodity as CommodityPayload,
         Gold as GoldPayload,
         Crypto as CryptoPayload,
+        IBANValidation as IBANValidationPayload,
     )
 
 
@@ -46,6 +47,7 @@ __all__ = (
     "Crypto",
     "Commodity",
     "Currency",
+    "IBANValidation",
 )
 # fmt: on
 
@@ -396,3 +398,93 @@ class CurrencyWithAmount(NamedTuple):
 class CurrencyConversion(NamedTuple):
     old: CurrencyWithAmount
     new: CurrencyWithAmount
+
+
+class IBANValidation:
+    """Represents an International Bank Account Number (IBAN) validation from the IBAN API.
+
+    .. container:: operations
+
+        .. describe:: str(x)
+
+            Returns the IBAN.
+
+        .. describe:: x == y
+
+            Checks if two IBANs are equal.
+
+        .. describe:: x != y
+
+            Checks if two IBANs are not equal.
+
+    Attributes
+    -----------
+    iban: :class:`str`
+        The IBAN.
+    bank_name: :class:`str`
+        The bank's name, which the IBAN belongs to.
+    account_number: :class:`str`
+        The account number from the IBAN.
+    bank_code: :class:`str`
+        The bank code from the IBAN.
+    country_code: :class:`str`
+        The country code from the IBAN.
+    checksum: :class:`str`
+        The checksum from the IBAN.
+    bban: :class:`str`
+        The Basic Bank Account Number (BBAN) from the IBAN.
+    valid: :class:`bool`
+        Whether the IBAN is valid or not.
+
+        .. note::
+
+            This only includes the IBAN checksum validation.
+    """
+
+    __slots__ = (
+        "iban",
+        "bank_name",
+        "account_number",
+        "bank_code",
+        "country_code",
+        "checksum",
+        "bban",
+        "valid",
+    )
+
+    def __init__(self, *, data: IBANValidationPayload):
+        self.iban: str = data["iban"]
+        self.bank_name: str = data["bank_name"]
+        self.account_number: str = data["account_number"]
+        self.bank_code: str = data["bank_code"]
+        self.country_code: str = data["country"]
+        self.checksum: str = data["checksum"]
+        self.bban: str = data["bban"]
+        self.valid: bool = data["valid"]
+
+    def __repr__(self) -> str:
+        attrs = [
+            ("iban", self.iban),
+            ("bank_name", self.bank_name),
+            ("valid", self.valid),
+        ]
+        joined = " ".join([f"{a}={v!r}" for a, v in attrs])
+        return f"<IBANValidation {joined}>"
+
+    def __str__(self) -> str:
+        return self.iban
+
+    def __eq__(self, other: IBANValidation) -> bool:
+        return self.iban == other.iban
+
+    def __ne__(self, other: IBANValidation) -> bool:
+        return not self.__eq__(other)
+
+    def is_valid(self) -> bool:
+        """:class:`bool`: Checks whether the IBAN is valid or not.
+
+        .. note::
+
+            This only includes the IBAN checksum validation.
+        """
+        return self.valid

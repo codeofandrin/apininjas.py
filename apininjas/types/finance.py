@@ -65,3 +65,14 @@ class CurrencyConversion(TypedDict):
 class ExchangeRate(TypedDict):
     currency_pair: str
     exchange_rate: float
+
+
+class IBANValidation(TypedDict):
+    iban: str
+    bank_name: str
+    account_number: str
+    bank_code: str
+    country: str
+    checksum: str
+    valid: bool
+    bban: str

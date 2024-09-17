@@ -224,6 +224,14 @@ Currency
 
         :type: :class:`float`
 
+IBANValidation
+~~~~~~~~~~~~~~~
+
+.. attributetable:: IBANValidation
+
+.. autoclass:: IBANValidation()
+    :members:
+
 
 Exceptions
 -----------
