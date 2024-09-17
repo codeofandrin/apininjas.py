@@ -36,9 +36,10 @@ from .errors import (
     MethodNotAllowed,
     APINinjasServerError,
 )
-from .types import finance
 
 if TYPE_CHECKING:
+    from .types import finance
+
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
 
