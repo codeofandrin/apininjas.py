@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from enum import Enum
+import enum
 
 
 # fmt: off
@@ -32,7 +32,28 @@ __all__ = (
 # fmt: on
 
 
-class CommodityType(Enum):
+class EnumMeta(enum.EnumMeta):
+    def __call__(cls, value, names=None, *, module=None, qualname=None, type=None, start=1):
+        if names is not None:
+            return super().__call__(
+                value,
+                names=names,
+                module=module,
+                qualname=qualname,
+                type=type,
+                start=start,
+            )
+        try:
+            return super().__call__(value)
+        except ValueError:
+            # return fallback object if value is invalid
+            obj = object.__new__(cls)  # type: ignore
+            obj._value_ = value
+            obj._name_ = f"unknown_{value}"
+            return obj
+
+
+class CommodityType(enum.Enum, metaclass=EnumMeta):
     gold = "gold"
     soybean_oil = "soybean_oil"
     wheat = "wheat"
