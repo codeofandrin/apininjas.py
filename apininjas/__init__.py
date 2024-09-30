@@ -1,6 +1,6 @@
 """
 apininjas.py
-===========
+=============
 Python Wrapper for the API-Ninjas APIs.
 
 Copyright (c) 2024-present Puncher1
