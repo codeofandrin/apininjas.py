@@ -27,7 +27,7 @@ from __future__ import annotations
 import sys
 
 import aiohttp
-from typing import TYPE_CHECKING, TypeVar, Coroutine, Any, ClassVar, Dict, Optional
+from typing import TYPE_CHECKING, TypeVar, Coroutine, Any, ClassVar, Dict, Optional, List
 
 from . import __version__
 from .errors import (
@@ -137,3 +137,8 @@ class HTTPClient:
     def get_iban_validation(self, *, iban: str) -> Response[finance.IBANValidation]:
         params = {"iban": iban}
         return self.request(Route("GET", "/iban"), params=params)
+
+    def get_inflation(self, **fields: Any) -> Response[List[finance.Inflation]]:
+        valid_keys = ("country", "type")
+        params = {k: v for k, v in fields.items() if k in valid_keys}
+        return self.request(Route("GET", "/inflation"), params=params)

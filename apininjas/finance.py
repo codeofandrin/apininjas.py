@@ -24,10 +24,11 @@ SOFTWARE.
 
 from __future__ import annotations
 
+import datetime
 from typing import TYPE_CHECKING, Optional, Union, NamedTuple
 
 import apininjas.abc
-from .enums import CommodityType
+from .enums import CommodityType, InflationIndicatorType, InflationCountry
 from . import utils
 
 if TYPE_CHECKING:
@@ -38,6 +39,7 @@ if TYPE_CHECKING:
         Gold as GoldPayload,
         Crypto as CryptoPayload,
         IBANValidation as IBANValidationPayload,
+        Inflation as InflationPayload,
     )
 
 
@@ -48,6 +50,7 @@ __all__ = (
     "Commodity",
     "Currency",
     "IBANValidation",
+    "Inflation",
 )
 # fmt: on
 
@@ -488,3 +491,65 @@ class IBANValidation:
             This only includes the IBAN checksum validation.
         """
         return self.valid
+
+
+class Inflation:
+    """Represents the inflation of a country from the Inflation API.
+
+    .. container:: operations
+
+        .. describe:: x == y
+
+            Checks if two inflations are equal.
+
+        .. describe:: x != y
+
+            Checks if two inflations are not equal.
+
+    Attributes
+    -----------
+    country: :class:`str`
+        The country to which the inflation belongs.
+    type: :class:`InflationIndicatorType`
+        The type of inflation indicator.
+    monthly_rate: :class:`float`
+        The inflation rate on a monthly basis, in percent.
+    yearly_rate: :class:`float`
+        The inflation rate on a yearly basis, in percent.
+    """
+
+    __slots__ = ("country", "type", "monthly_rate", "yearly_rate", "_period")
+
+    def __init__(self, *, data: InflationPayload):
+        self.country: InflationCountry = InflationCountry(data["country"])
+        self.type: InflationIndicatorType = InflationIndicatorType(data["type"])
+        self.monthly_rate: float = data["monthly_rate_pct"]
+        self.yearly_rate: float = data["yearly_rate_pct"]
+        self._period: str = data["period"]
+
+    def __repr__(self) -> str:
+        attrs = [
+            ("country", self.country),
+            ("type", self.type),
+        ]
+        joined = " ".join([f"{a}={v!r}" for a, v in attrs])
+        return f"<Inflation {joined}>"
+
+    def __eq__(self, other: Inflation) -> bool:
+        return self.country == other.country and self.type == other.type and self.period == other.period
+
+    def __ne__(self, other: Inflation) -> bool:
+        return not self.__eq__(other)
+
+    @property
+    def period(self) -> datetime.datetime:
+        """:class:`datetime.datetime`: The time period for the inflation data."""
+        return datetime.datetime.strptime(self._period, "%b %Y")
+
+    def is_monthly_increased(self) -> bool:
+        """:class:`bool`: Whether the monthly inflation rate increased."""
+        return self.monthly_rate > 0
+
+    def is_yearly_increased(self) -> bool:
+        """:class:`bool`: Whether the yearly inflation rate increased."""
+        return self.yearly_rate > 0

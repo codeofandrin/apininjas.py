@@ -28,6 +28,8 @@ import enum
 # fmt: off
 __all__ = (
     "CommodityType",
+    "InflationIndicatorType",
+    "InflationCountry",
 )
 # fmt: on
 
@@ -84,3 +86,51 @@ class CommodityType(enum.Enum, metaclass=EnumMeta):
     gasoline_rbob = "gasoline_rbob"
     heating_oil = "heating_oil"
     class_3_milk = "class_3_milk"
+
+
+class InflationIndicatorType(enum.Enum, metaclass=EnumMeta):
+    cpi = "CPI"
+    hicp = "HICP"
+
+
+class InflationCountry(enum.Enum, metaclass=EnumMeta):
+    austria = "Austria"
+    belgium = "Belgium"
+    brazil = "Brazil"
+    canada = "Canada"
+    chile = "Chile"
+    china = "China"
+    czech_republic = "Czech Republic"
+    czechia = czech_republic
+    denmark = "Denmark"
+    estonia = "Estonia"
+    finland = "Finland"
+    france = "France"
+    germany = "Germany"
+    greece = "Greece"
+    hungary = "Hungary"
+    iceland = "Iceland"
+    india = "India"
+    indonesia = "Indonesia"
+    ireland = "Ireland"
+    israel = "Israel"
+    italy = "Italy"
+    japan = "Japan"
+    mexico = "Mexico"
+    norway = "Norway"
+    poland = "Poland"
+    portugal = "Portugal"
+    russia = "Russia"
+    slovakia = "Slovakia"
+    slovenia = "Slovenia"
+    south_korea = "South Korea"
+    south_africa = "South Africa"
+    spain = "Spain"
+    sweden = "Sweden"
+    switzerland = "Switzerland"
+    netherlands = "The Netherlands"
+    turkiye = "Türkiye"
+    united_kingdom = "United Kingdom"
+    uk = united_kingdom
+    united_states = "United States"
+    usa = united_states

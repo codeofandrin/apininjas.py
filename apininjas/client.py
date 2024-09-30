@@ -35,9 +35,11 @@ from .finance import (
     CurrencyConversion,
     Currency,
     IBANValidation,
+    Inflation,
 )
-from .enums import CommodityType
+from .enums import CommodityType, InflationCountry, InflationIndicatorType
 from .errors import StockNotFound
+from .utils import MISSING
 
 if TYPE_CHECKING:
     from typing_extensions import Self
@@ -299,3 +301,61 @@ class Client:
         """
         data = await self._http.get_iban_validation(iban=iban)
         return IBANValidation(data=data)
+
+    async def fetch_inflation(
+        self, country: InflationCountry, *, type: InflationIndicatorType = MISSING
+    ) -> Inflation:
+        """|coro|
+
+        Retrieves an :class:`Inflation` with the specified country.
+
+        Parameters
+        ----------
+        country: :class:`str`
+            The country to retrieve from.
+        type: :class:`InflationIndicatorType`
+            The inflation indicator type.
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the inflation failed.
+
+        Returns
+        -------
+        :class:`Inflation`
+            The retrieved inflation.
+        """
+        fields = {"country": country.value}
+        if type is not MISSING:
+            fields["type"] = type.value
+
+        data = await self._http.get_inflation(**fields)
+        return Inflation(data=data[0])
+
+    async def fetch_inflations(self, *, type: InflationIndicatorType = MISSING) -> List[Inflation]:
+        """|coro|
+
+        Retrieves a list of available :class:`Inflation`.
+
+        Parameters
+        ----------
+        type: :class:`InflationIndicatorType`
+            The inflation indicator type.
+
+        Raises
+        -------
+        HTTPException
+            Retrieving the inflation failed.
+
+        Returns
+        -------
+        List[:class:`Inflation`]
+            The retrieved list of available inflation.
+        """
+        fields = {}
+        if type is not MISSING:
+            fields["type"] = type.value
+
+        data = await self._http.get_inflation(**fields)
+        return [Inflation(data=inflation) for inflation in data]

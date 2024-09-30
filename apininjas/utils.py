@@ -31,12 +31,29 @@ from typing import Callable, Any, TypeVar
 
 # fmt: off
 __all__ = (
+    "MISSING",
     "from_timestamp",
 )
 # fmt: on
 
 
 T = TypeVar("T")
+
+
+class _MissingSentinel:
+    __slots__ = ()
+
+    def __eq__(self, other) -> bool:
+        return False
+
+    def __bool__(self) -> bool:
+        return False
+
+    def __repr__(self):
+        return "..."
+
+
+MISSING: Any = _MissingSentinel()
 
 
 def from_timestamp(timestamp: int, /) -> datetime.datetime:

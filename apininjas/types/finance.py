@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from typing import TypedDict, List
+from typing import TypedDict, List, Literal
 
 
 class Gold(TypedDict):
@@ -76,3 +76,11 @@ class IBANValidation(TypedDict):
     checksum: str
     valid: bool
     bban: str
+
+
+class Inflation(TypedDict):
+    country: str
+    type: Literal["CPI", "HICP"]
+    period: str
+    monthly_rate_pct: float
+    yearly_rate_pct: float
