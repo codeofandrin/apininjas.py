@@ -20,7 +20,7 @@ Client
     :members:
 
 
-Utility Functions
+Utilities
 ------------------
 
 .. autofunction:: apininjas.utils.from_timestamp
