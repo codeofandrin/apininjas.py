@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2024-present Puncher1
+Copyright (c) 2024-present codeofandrin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -68,7 +68,7 @@ class HTTPClient:
         sys_vers = f"Python/{sys.version_info[0]}.{sys.version_info[1]}"
         client_vers = f"aiohttp/{aiohttp.__version__}"
         self.user_agent: str = (
-            f"apininjas.py (https://github.com/Puncher1/apininjas.py {__version__}) {sys_vers} {client_vers}"
+            f"apininjas.py (https://github.com/codeofandrin/apininjas.py {__version__}) {sys_vers} {client_vers}"
         )
 
     async def request(

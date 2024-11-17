@@ -3,13 +3,13 @@ apininjas.py
 =============
 Python Wrapper for the API-Ninjas APIs.
 
-Copyright (c) 2024-present Puncher1
+Copyright (c) 2024-present codeofandrin
 MIT License. See LICENSE for details
 """
 
 __version__ = "0.3.0a"
-__author__ = "Puncher1"
-__copyright__ = "Copyright (c) 2024-present Puncher1"
+__author__ = "codeofandrin"
+__copyright__ = "Copyright (c) 2024-present codeofandrin"
 __license__ = "MIT"
 
 from typing import NamedTuple, Literal
